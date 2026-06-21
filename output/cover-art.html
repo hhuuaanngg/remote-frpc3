@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; }
+    body {
+      font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+      color: #f4f8ff;
+      background: #06101e url("./cover-background.png") center / cover no-repeat;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(3, 10, 20, .98) 0%, rgba(4, 13, 27, .88) 38%, rgba(4, 12, 25, .30) 72%, rgba(4, 10, 19, .5) 100%),
+        radial-gradient(circle at 64% 47%, rgba(52, 127, 255, .24), transparent 42%);
+    }
+    .frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 104px 92px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: #dbe9ff;
+    }
+    .logo {
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(106, 166, 255, .55);
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(37, 104, 234, .35), rgba(15, 38, 72, .8));
+      box-shadow: 0 0 30px rgba(50, 125, 255, .22);
+    }
+    .logo svg { width: 26px; height: 26px; }
+    .copy { position: absolute; left: 92px; top: 266px; width: 660px; z-index: 2; }
+    .eyebrow {
+      font-size: 18px;
+      color: #75aaff;
+      letter-spacing: .22em;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 76px;
+      line-height: 1.15;
+      letter-spacing: -.04em;
+      font-weight: 800;
+      text-shadow: 0 8px 42px rgba(0, 0, 0, .32);
+    }
+    h1 em { color: #6da7ff; font-style: normal; }
+    .desc {
+      margin: 30px 0 0;
+      width: 570px;
+      font-size: 23px;
+      line-height: 1.75;
+      color: #9db0ca;
+    }
+    .features { display: flex; gap: 12px; margin-top: 43px; }
+    .feature {
+      padding: 12px 17px;
+      border: 1px solid rgba(114, 164, 238, .25);
+      border-radius: 999px;
+      background: rgba(21, 46, 82, .46);
+      color: #c5d8f4;
+      font-size: 16px;
+      backdrop-filter: blur(10px);
+    }
+    .product {
+      position: absolute;
+      left: 800px;
+      top: 164px;
+      width: 1054px;
+      height: 659px;
+      border-radius: 22px;
+      padding: 9px;
+      background: linear-gradient(145deg, rgba(118, 175, 255, .7), rgba(44, 97, 180, .12) 35%, rgba(89, 154, 255, .42));
+      box-shadow: 0 45px 110px rgba(0, 0, 0, .6), 0 0 90px rgba(45, 124, 255, .22);
+      transform: perspective(1500px) rotateY(-7deg) rotateX(2deg);
+      transform-origin: right center;
+    }
+    .product::before {
+      content: "";
+      position: absolute;
+      inset: -38px;
+      border: 1px solid rgba(84, 148, 255, .12);
+      border-radius: 35px;
+      z-index: -1;
+    }
+    .product img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+    .caption {
+      position: absolute;
+      right: 104px;
+      bottom: 111px;
+      width: 860px;
+      padding-top: 21px;
+      border-top: 1px solid rgba(119, 166, 234, .28);
+      display: flex;
+      justify-content: space-between;
+      color: #879bb6;
+      font-size: 15px;
+      letter-spacing: .08em;
+    }
+    .caption strong { color: #bdd2ef; font-weight: 600; }
+    .dot {
+      position: absolute; right: 75px; top: 76px; width: 7px; height: 7px;
+      background: #62a0ff; border-radius: 50%; box-shadow: 0 0 20px #62a0ff;
+    }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <div class="dot"></div>
+    <div class="brand">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8bb8ff" stroke-width="1.8">
+          <rect x="4" y="5" width="16" height="14" rx="3"/>
+          <path d="M8 10h8M8 14h3M14 14h2"/>
+        </svg>
+      </div>
+      <span>frpc-editor</span>
+    </div>
+
+    <section class="copy">
+      <div class="eyebrow">FRP 客户端可视化运维工具</div>
+      <h1>让 frpc 配置与运行<br><em>一目了然</em></h1>
+      <p class="desc">从 TOML 配置编辑到本地进程管理，用清晰直观的桌面界面简化日常运维。</p>
+      <div class="features">
+        <span class="feature">可视化配置</span>
+        <span class="feature">进程管理</span>
+        <span class="feature">实时预览</span>
+      </div>
+    </section>
+
+    <section class="product">
+      <img src="../product-screenshot.png" alt="frpc-editor 产品界面" />
+    </section>
+
+    <div class="caption">
+      <strong>面向运维人员的 frpc 桌面客户端</strong>
+      <span>TAURI · REACT · FRP v0.60+</span>
+    </div>
+  </main>
+</body>
+</html>

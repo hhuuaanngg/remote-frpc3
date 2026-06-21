@@ -87,6 +87,40 @@ npm run tauri build
 
 构建产物位于 `src-tauri/target/release/bundle/`。
 
+## GitHub 自动发布
+
+仓库已配置 GitHub Actions（`.github/workflows/release.yml`），行为如下：
+
+| 触发条件 | 行为 |
+| --- | --- |
+| 推送到 `main` 分支 | 自动构建 Windows 安装包，并创建 **Pre-release**（标签 `dev-<构建号>`） |
+| 推送版本标签 `v*`（如 `v0.1.0`） | 自动构建并创建 **正式 Release** |
+| Pull Request | 仅构建并上传 Artifact，不创建 Release |
+| 手动触发 | 在 Actions 页面选择 **Run workflow** |
+
+每次 Release 包含以下下载文件：
+
+- `frpc-editor-windows-x64-portable.zip` — 便携版（单 exe）
+- `*.msi` — Windows MSI 安装包
+- `*-setup.exe` — NSIS 安装程序
+
+用户可在 GitHub 仓库的 **Releases** 页面直接下载。
+
+### 发布正式版本
+
+1. 同步更新 `package.json`、`src-tauri/tauri.conf.json`、`src-tauri/Cargo.toml` 中的 `version` 字段。
+2. 提交并推送到 `main`。
+3. 创建并推送版本标签：
+
+```powershell
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+### 日常开发构建
+
+每次推送到 `main` 都会自动生成预发布版本（`dev-1`、`dev-2` …），无需手动打标签。
+
 ## 使用方式
 
 1. 启动应用。
