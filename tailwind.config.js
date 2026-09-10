@@ -49,7 +49,7 @@ export default {
       },
       fontFamily: {
         mono: ['"JetBrains Mono"', '"Fira Code"', '"Cascadia Code"', 'Consolas', 'monospace'],
-        sans: ['"SF Pro Display"', '"Inter"', 'system-ui', 'sans-serif'],
+        sans: ['"Segoe UI Variable Text"', '"Segoe UI"', '"Microsoft YaHei UI"', 'system-ui', 'sans-serif'],
       },
     },
   },

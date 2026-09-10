@@ -5,16 +5,17 @@ interface FieldGroupProps {
   children: React.ReactNode;
   className?: string;
   description?: string;
+  columns?: 1 | 2 | 3;
 }
 
-export function FieldGroup({ title, children, className, description }: FieldGroupProps) {
+export function FieldGroup({ title, children, className, description, columns = 2 }: FieldGroupProps) {
   return (
-    <div className={cn("rounded-lg border border-border/50 bg-card/50 p-4 space-y-4", className)}>
-      <div>
-        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
-        {description && <p className="text-[11px] text-muted-foreground/60 mt-0.5">{description}</p>}
+    <div className={cn("field-group", className)}>
+      <div className="field-group-heading">
+        <h3>{title}</h3>
+        {description && <p>{description}</p>}
       </div>
-      <div className="space-y-3">
+      <div className={cn("form-fields", `form-fields-${columns}`)}>
         {children}
       </div>
     </div>

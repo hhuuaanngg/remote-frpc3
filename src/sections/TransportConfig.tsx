@@ -92,6 +92,7 @@ export function TransportConfig() {
           tooltip={FIELD_DESCRIPTIONS["transport.connectServerLocalIP"]}
         />
         <TextField
+          className="form-full"
           label="transport.proxyURL"
           value={transport.proxyURL}
           onChange={(v) => updateTransport({ ...transport, proxyURL: v || undefined })}
@@ -100,7 +101,7 @@ export function TransportConfig() {
         />
       </FieldGroup>
 
-      <FieldGroup title="QUIC 配置" description="protocol = quic 时生效">
+      <FieldGroup columns={3} title="QUIC 配置" description="protocol = quic 时生效">
         <NumberField
           label="transport.quic.keepalivePeriod"
           value={transport.quic?.keepalivePeriod}
@@ -173,6 +174,7 @@ export function TransportConfig() {
           tooltip={FIELD_DESCRIPTIONS["transport.tls.serverName"]}
         />
         <SwitchField
+          className="form-full"
           label="transport.tls.disableCustomTLSFirstByte"
           checked={transport.tls?.disableCustomTLSFirstByte}
           onChange={(v) =>

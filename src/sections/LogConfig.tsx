@@ -28,6 +28,7 @@ export function LogConfig() {
 
       <FieldGroup title="日志输出" description="日志的目标位置和级别">
         <TextField
+          className="form-full"
           label="log.to"
           value={log.to}
           onChange={(v) => updateLog({ ...log, to: v })}

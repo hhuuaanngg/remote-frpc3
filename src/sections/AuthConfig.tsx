@@ -43,7 +43,7 @@ export function AuthConfig() {
       </FieldGroup>
 
       {auth.method === "token" && (
-        <FieldGroup title="Token 认证">
+        <FieldGroup title="Token 认证" columns={1}>
           <TextField
             label="auth.token"
             value={auth.token}
@@ -116,7 +116,8 @@ export function AuthConfig() {
             tooltip={FIELD_DESCRIPTIONS["auth.oidc.scope"]}
           />
           <TextField
-            label="auth.oidc.tokenEndpointURL"
+            className="form-full"
+          label="auth.oidc.tokenEndpointURL"
             value={auth.oidc?.tokenEndpointURL}
             onChange={(v) =>
               updateAuth({ ...auth, oidc: { ...auth.oidc, tokenEndpointURL: v || undefined } })
@@ -152,7 +153,8 @@ export function AuthConfig() {
             tooltip={FIELD_DESCRIPTIONS["auth.oidc.insecureSkipVerify"]}
           />
           <TextField
-            label="auth.oidc.proxyURL"
+            className="form-full"
+          label="auth.oidc.proxyURL"
             value={auth.oidc?.proxyURL}
             onChange={(v) =>
               updateAuth({ ...auth, oidc: { ...auth.oidc, proxyURL: v || undefined } })

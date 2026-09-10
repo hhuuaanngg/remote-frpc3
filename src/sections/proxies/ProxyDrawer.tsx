@@ -127,12 +127,12 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 h-full w-[540px] bg-background border-l border-border/50 z-50 flex flex-col shadow-2xl"
+            className="fixed right-0 top-0 h-full w-full max-w-[720px] bg-background border-l border-border/50 z-50 flex flex-col shadow-2xl"
           >
             {/* Header */}
-            <div className="px-5 py-4 border-b border-border/50 flex items-center justify-between">
+            <div className="px-3 py-2 border-b border-border/50 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <h2 className="text-lg font-bold">
+                <h2 className="text-sm font-semibold">
                   {isEdit ? "编辑代理" : "新建代理"}
                 </h2>
                 <Badge
@@ -155,8 +155,8 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
             </div>
 
             {/* Content */}
-            <ScrollArea className="flex-1">
-              <div className="p-5 space-y-5">
+            <ScrollArea className="flex-1 min-h-0">
+              <div className="p-3 space-y-3">
                 {/* Basic */}
                 <FieldGroup title="基础配置">
                   <TextField
@@ -297,7 +297,8 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
                 {showSecretKey && (
                   <FieldGroup title="安全代理配置">
                     <TextField
-                      label="secretKey"
+                      className="form-full"
+          label="secretKey"
                       value={form.secretKey}
                       onChange={(v) => updateForm({ secretKey: v || undefined })}
                       tooltip={FIELD_DESCRIPTIONS["proxy.secretKey"]}
@@ -340,7 +341,8 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
                 {showNatTraversal && (
                   <FieldGroup title="NAT 穿透">
                     <SwitchField
-                      label="natTraversal.disableAssistedAddrs"
+                      className="form-full"
+          label="natTraversal.disableAssistedAddrs"
                       checked={form.natTraversal?.disableAssistedAddrs}
                       onChange={(v) =>
                         updateForm({
@@ -585,7 +587,8 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
                   {form.plugin?.type === "static_file" && (
                     <>
                       <TextField
-                        label="plugin.localPath"
+                        className="form-full"
+          label="plugin.localPath"
                         value={form.plugin?.localPath}
                         onChange={(v) =>
                           updateForm({
@@ -646,7 +649,8 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
                         form.plugin?.type !== "http2http" && (
                           <>
                             <TextField
-                              label="plugin.crtPath"
+                              className="form-full"
+          label="plugin.crtPath"
                               value={form.plugin?.crtPath}
                               onChange={(v) =>
                                 updateForm({
@@ -656,7 +660,8 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
                               tooltip={FIELD_DESCRIPTIONS["proxy.plugin.crtPath"]}
                             />
                             <TextField
-                              label="plugin.keyPath"
+                              className="form-full"
+          label="plugin.keyPath"
                               value={form.plugin?.keyPath}
                               onChange={(v) =>
                                 updateForm({
@@ -706,7 +711,8 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
                         tooltip={FIELD_DESCRIPTIONS["proxy.plugin.localAddr"]}
                       />
                       <TextField
-                        label="plugin.crtPath"
+                        className="form-full"
+          label="plugin.crtPath"
                         value={form.plugin?.crtPath}
                         onChange={(v) =>
                           updateForm({
@@ -716,7 +722,8 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
                         tooltip={FIELD_DESCRIPTIONS["proxy.plugin.crtPath"]}
                       />
                       <TextField
-                        label="plugin.keyPath"
+                        className="form-full"
+          label="plugin.keyPath"
                         value={form.plugin?.keyPath}
                         onChange={(v) =>
                           updateForm({
@@ -732,7 +739,7 @@ export function ProxyDrawer({ isOpen, onClose, proxy, onSave, onDelete }: ProxyD
             </ScrollArea>
 
             {/* Footer */}
-            <div className="px-5 py-4 border-t border-border/50 flex justify-end gap-2">
+            <div className="px-3 py-2 border-t border-border/50 flex justify-end gap-2">
               <Button variant="outline" onClick={onClose}>
                 取消
               </Button>

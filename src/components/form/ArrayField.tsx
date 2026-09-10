@@ -31,7 +31,7 @@ export function ArrayField({ label, values = [], onChange, description, tooltip,
   };
 
   return (
-    <div className={cn("space-y-1.5", className)}>
+    <div className={cn("form-full space-y-1.5", className)}>
       <div className="flex items-center gap-1.5">
         <Label className="text-xs font-medium text-muted-foreground">{label}</Label>
         {tooltip && <HelpTooltip content={tooltip} />}

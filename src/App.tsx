@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Sidebar, type Section } from "@/components/Sidebar";
+import { TopNavigation, type Section } from "@/components/TopNavigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/hooks/useTheme";
@@ -117,29 +117,30 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen bg-background overflow-hidden">
-      <Sidebar
+    <div className="app-shell flex h-dvh flex-col bg-background overflow-hidden">
+      <TopNavigation
         activeSection={activeSection}
         onNavigate={setActiveSection}
         proxyCount={config.proxies?.length || 0}
         visitorCount={config.visitors?.length || 0}
       />
-      <main className="flex-1 flex flex-col min-w-0">
-        {lastSavedPath && (
-          <div className="px-4 py-1.5 border-b border-border/30 bg-muted/30 flex items-center justify-between">
-            <div className="flex items-center gap-2 min-w-0">
-              <span className="text-[10px] text-muted-foreground/60 shrink-0">工作文件:</span>
-              <span className="text-[10px] font-mono text-muted-foreground truncate">{lastSavedPath}</span>
-            </div>
-            <AutoSaveIndicator />
-          </div>
-        )}
-        <ScrollArea className="flex-1">
-          <div className="p-6 max-w-4xl">
+      <main className="flex-1 flex flex-col min-w-0 min-h-0">
+        <ScrollArea key={activeSection} className="flex-1 min-h-0">
+          <div className="workspace-content">
             {renderContent()}
           </div>
         </ScrollArea>
       </main>
+      <footer className="desktop-statusbar">
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="shrink-0">工作文件:</span>
+          <span className="font-mono truncate" title={lastSavedPath || undefined}>{lastSavedPath || "未加载文件"}</span>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          {lastSavedPath && <AutoSaveIndicator />}
+          <span>代理 {config.proxies?.length || 0} · 访问端 {config.visitors?.length || 0}</span>
+        </div>
+      </footer>
       <Toaster />
     </div>
   );
@@ -170,11 +171,11 @@ function AutoSaveIndicator() {
   return (
     <div className="flex items-center gap-2 shrink-0">
       {isDirty ? (
-        <span className="text-[10px] text-amber-400">未保存</span>
+        <span className="text-[10px] text-amber-700 dark:text-amber-300">未保存</span>
       ) : saving ? (
         <span className="text-[10px] text-muted-foreground">保存中...</span>
       ) : (
-        <span className="text-[10px] text-emerald-400">已保存</span>
+        <span className="text-[10px] text-emerald-700 dark:text-emerald-300">已保存</span>
       )}
     </div>
   );
